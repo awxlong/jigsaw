@@ -129,4 +129,4 @@ def train_agent(image_path, episodes=1000):
     pygame.quit()
 
 if __name__ == "__main__":
-    train_agent('lima.jpg', episodes=2)
+    train_agent('lima.jpg', episodes=1)

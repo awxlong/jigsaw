@@ -1,30 +1,28 @@
 import numpy as np
 import random
 
-
 class RLPuzzleAgent:
-    def __init__(self, grid_size, learning_rate=0.1, discount_factor=0.9, exploration_rate=1.0, exploration_decay=0.99, min_exploration_rate=0.01):
+    def __init__(self, grid_size, learning_rate=0.1, discount_factor=0.9, exploration_rate=0.8, exploration_decay=0.995, min_exploration_rate=0.01):
         self.grid_size = grid_size
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
         self.exploration_rate = exploration_rate
         self.exploration_decay = exploration_decay
         self.min_exploration_rate = min_exploration_rate
-        self.q_table = {}  # Q-table: key = state, value = action values
+        self.q_table = {}
 
     def get_state_key(self, state):
-        """Convert the state (a list) to a string key for the Q-table."""
-        return str(state)
+        """Convert the state (a list) to a tuple so it can be used as a dictionary key."""
+        return tuple(state)
 
     def choose_action(self, state, possible_actions):
         """Choose an action using epsilon-greedy strategy."""
         state_key = self.get_state_key(state)
         if state_key not in self.q_table:
-            # Initialize Q-values for new states
             self.q_table[state_key] = np.zeros(len(possible_actions))
 
         if random.uniform(0, 1) < self.exploration_rate:
-            # Explore: choose a random action
+            # Explore: choose a random action index
             return random.choice(range(len(possible_actions)))
         else:
             # Exploit: choose the action with the highest Q-value
