@@ -5,7 +5,7 @@ import pygame
 import sys
 
 # Constants
-GRID_SIZE = 3
+GRID_SIZE = 2
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 FPS = 30
