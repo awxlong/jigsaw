@@ -64,3 +64,10 @@ class RLPuzzleAgent:
             possible_actions.append(empty_pos + 1)  # Move right
 
         return possible_actions
+
+
+def calculate_reward(grid, next_grid, grid_size):
+    """Calculate the reward based on how many pieces are in their correct positions."""
+    correct_positions = sum(1 for i, val in enumerate(next_grid) if val == i)
+    reward = correct_positions / (grid_size * grid_size)  # Normalized reward
+    return reward
